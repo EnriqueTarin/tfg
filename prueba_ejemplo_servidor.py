@@ -3,8 +3,12 @@
 from prometheus_client import start_http_server, Summary, Gauge
 import random
 import time
-from topicos.battery import Battery
-from topicos.position import position
+import rospy
+from battery import Battery
+from position import position
+
+rate = rospy.Rate(2)
+rospy.init_node('robot_monitor')
 # Objetos tipoc clase
 bateria=Battery()
 posicion=position()
@@ -64,12 +68,16 @@ def position_func():
     imu_angular_vel_y.set(posicion.imu_angular_vel_y)   
     imu_angular_vel_z.set(posicion.imu_angular_vel_z)
 
+
 if __name__ == '__main__':
     # Start up the server to expose the metrics.
-    start_http_server(9091)
-    # Llamadas a funciones
-    battery_fuc()
+        start_http_server(9091)
 
+while not rospy.is_shutdown(): 
+    rate.sleep()
     # Generate some requests.
     while True:  
         process_request(random.random())
+        # Llamadas a funciones
+        battery_fuc()
+        position_func
