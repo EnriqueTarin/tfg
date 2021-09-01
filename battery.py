@@ -5,7 +5,6 @@ import rospy
 from std_msgs.msg import Float32
 
 class Battery:
-  rospy.init_node('robot_monitor_batery_node')
   def __init__(self):  
     self.voltage = 0
     self.current = 0
@@ -28,6 +27,7 @@ class Battery:
 
 
   def __main__(self):
+    rospy.init_node('robot_monitor_batery_node')
     rospy.spin()
     self.battery_info_cb
     self.capacity_cb

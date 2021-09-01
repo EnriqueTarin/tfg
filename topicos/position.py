@@ -6,11 +6,13 @@ class position:
   
   def __init__(self):  
     self.position_linear_x = 0
-    self.curposition_linear_y = 0
+    self.position_linear_y = 0
     self.position_linear_z= 0
+
     self.position_angular_x = 0
     self.position_angular_y = 0
     self.position_angular_z = 0
+    
     self.battery_info_sub=rospy.Subscriber("/robot/robotnik_base_control/odom",Odometry,self.odometry_cb)
     self.battery_info_sub=rospy.Subscriber("/robot/imu/data",Imu,self.imu_cb)
 
