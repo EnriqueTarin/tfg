@@ -3,7 +3,8 @@ import rospy
 
 class position:
   
-  def __init__(self):  
+  def __init__(self):
+    rospy.init_node('robot_monitor_position')
     self.position_linear_x = 0
     self.current = 0
     self.level= 0
